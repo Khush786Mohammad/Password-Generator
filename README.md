@@ -5,6 +5,6 @@ Generate strong and secure random passwords with this simple password generator 
 2) Customizable password length.
 3) Copy the generated password to the clipboard.
 
-Hosted Link:
+Hosted Link: https://passgenpro2.netlify.app/
 
 Screenshots:
