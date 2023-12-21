@@ -20,6 +20,11 @@ handleSlider(20);
 function handleSlider(){
     slider.value=len;
     passwordLength.innerText = len;
+
+    let mini = slider.min;
+    let maxi = slider.max;
+
+    slider.style.backgroundSize = ((len-mini)*100/(maxi-mini)) + "% 100%";
 }
 
 // setting the strength indicator
@@ -62,7 +67,6 @@ function calStrength(){
     if(lowercase.checked) hasLower = true;
     if(numbers.checked) hasNumbers = true;
     if(specialSymbols.checked) hasSymbol = true;
-    console.log(len);
 
     if(hasUpper && hasLower && (hasSymbol || hasNumbers) && len >= 8){
         setIndicator('#0f0','0px 0px 20px rgba(0, 255, 0, 1)');
@@ -91,7 +95,6 @@ function calStrength(){
 
 async function copyFunction(){
     let content = passwordDisplay.value;
-    console.log("This is the generated Password",content);
     try{
         await navigator.clipboard.writeText(content);
         copyMessage.textContent = "Copied";
@@ -111,7 +114,6 @@ async function copyFunction(){
 }
 
 dataCopy.addEventListener('click', () => {
-    console.log("Checking the passwordDisplay Value")
     if(passwordDisplay.value){
         copyFunction();
     }
@@ -134,13 +136,9 @@ allCheck.forEach((element) => {
     element.addEventListener('change',(e) => {
         if(e.target.checked){
             checkCount++;
-            // alert("checked");
-            console.log(checkCount);
         }
         else{
             checkCount--;
-            // alert("Unchecked");
-            console.log(checkCount);
         }
     });
 });
@@ -184,8 +182,7 @@ generate.addEventListener('click',() => {
     }
 
     // Now Calculate the strength of the password
-    
-    console.log(password);
+
     passwordDisplay.value = password;
     calStrength();
 });
